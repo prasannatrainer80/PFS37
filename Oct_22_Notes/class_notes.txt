@@ -1,0 +1,115 @@
+Normalization is scientific method of breaking down the complex table structures into simple table structures by using certain rules. 
+
+There are various normal forms as 
+
+Employ(Empno,Name,Gender,Salary,DeptCode,DeptHead,ProjCode,Hours) 
+
+    E101,Ajay,MALE,88234,D124,Saketh,{P124,P522,P311},{882,55,114}
+
+1) First Normal Form : A table said to be in 1NF, when each cell contains precisely One value (Atomic Values) 
+
+By Applying 1NF 
+
+    E101,Ajay,MALE,88234,D124,Saketh,P124,882
+    E101,Ajay,MALE,88234,D124,Saketh,P522,55
+    E101,Ajay,MALE,88234,D124,Saketh,P311,114
+
+Insert : The ProjCode and Hours will not be available to employee at the time of entering employee records. 
+
+Update : DeptCode,DeptHead are repeated multiple times, if DeptHead moves to another dept, then the change needs to be reflected to all corresponding records. 
+
+Delete : If any employee record deleted, then the corresponding project records also deleted. 
+
+1NF inadequate 
+
+2) Second Normal Form : A table said to be in 2NF, at first it must be in 1NF, every attribute functionally depend on whole key but not part of the key. {Functional Dependency} 
+
+Guidelines : 
+
+	-> Find and remove attributes that are not functionally depend on 
+		whole key
+	-> Group the remaining attributes. 
+
+Employ(Empno,Name,Gender,Salary,DeptCode,DeptHead,ProjCode,Hours) 
+
+	Empno ->  Name (Yes)
+	      ->  Gender (Yes)
+	      ->  Salary (Yes)
+	      ->  DeptCode (Yes)
+	      ->  DeptHead (Yes)
+	      ->  ProjCode (No)
+	      ->  Hours (No) 
+
+Employ(empno+,name,gender,salary,deptcode,depthead)
+Project(Projcode,Empno-,Hours) 
+	{ProjCode+Empno}
+
+Insert : DeptCode and DeptHead details not available till employee is there. 
+
+Update : DeptCode,DeptHead repeated several times as if any head moves to another dept change to be happen manually.
+
+Delete : If any employee records deletes then the depthead data also lost. 
+
+So 2NF inadequate 
+
+3) Third Normal Form : A table said to be in 3NF, at first it must be in 2NF each attribute needs to depend on whole key but not transitively. (Transitive Dependency)
+
+Guidelines : 
+	=> Find and remove attributes that are transitively depend on whole key
+	=> Group the remaining attributes
+
+By applying 3NF 
+
+
+	
+Employ(empno+,name,gender,salary,deptcode,depthead)
+
+Empno -> Name (Yes)
+      -> Gender (Yes)
+      -> Salary (Yes)  
+      -> DeptCode (No)
+      -> DeptHead (No)
+
+Department(DeptCode+,DeptHead)
+Employ(Empno+,Name,Gender,Salary,DeptCode-)
+Project(Projcode,Empno-,Hours) 
+	{ProjCode+Empno}
+
+
+_______________________________________________________________________
+
+
+
+EmployeeDetails(EmpId,Name,Gender,Doj,LeaveAvailable,LeaveId,LeaveStartDate,LeaveEndDate,NoOfDays,LossOfPay,LeaveReason,LeaveStatus,ManagerComments)
+
+First Normal Form : A table said to be 1NF each cell contains precisely one value (Atomic) 
+
+Insert : Not able to enter Leave Details in employee registration part
+
+Update : No Issue
+
+Delete : No issue 
+
+1NF inadqudate 
+
+2nf : Functional Depedency 
+
+
+EmployeeDetails(EmpId,Name,Gender,Doj,LeaveAvailable,LeaveId,LeaveStartDate,LeaveEndDate,NoOfDays,LossOfPay,LeaveReason,LeaveStatus,ManagerComments)
+
+EmpId -> Name (Yes)
+	 Gender (Yes)
+	 Doj (Yes)
+	 LeaveAvailable (Yes)
+	 LeaveId (No)
+	 LeaveStartDate(No)
+	 LeaveEndDate(no)
+	 NoOfDays (No)
+	 LeaveReason(No)
+	 LeaveStatus(No)
+	 ManagerComments(No)
+
+Employee(EmpId+,Name,Gender,Doj)
+LeaveDetails(LeaveId+,EmpId-,LeaveStartDate,LeaveEndDate,NoOfDays,LeaveReason,
+LeaveStatus,ManagerComments)
+
