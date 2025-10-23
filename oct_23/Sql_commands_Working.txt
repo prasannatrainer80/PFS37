@@ -1,0 +1,73 @@
+To see the list of databases 
+
+show databases;
+
+To Change to PFS37 database
+
+use PFS37;
+
+To see list of tables 
+
+Show Tables;
+
+To see information about Dept table
+
+desc Dept;
+
+Display all records from Emp table 
+
+select * from Emp;
+
+Display all records from Dept table 
+
+select * from Dept;
+
+Display Deptno,Dname from Dept table 
+
+select deptno, dname from dept; -- Called Projection Operator 
+
+Display Empno,Ename,job,sal,mgr,comm from Emp table;
+
+select empno,ename,job,sal,mgr,comm from Emp;
+
+
+WHERE Clause : Used to display filtered records. 
+
+-- Display info whose empno is 7839 
+
+select * from Emp where empno = 7839;
+
+-- Display info whose Ename is 'SCOTT' 
+
+select * from Emp where Ename='SCOTT';
+
+-- Display info whose job is 'MANAGER'
+
+select * from Emp where JOB='MANAGER'; 
+
+-- Display info whose sal >= 3000
+
+select * from Emp where sal >= 3000;
+
+-- Display info whose sal >= 3000 and Job is 'Analyst'
+
+select * from Emp where sal >= 3000 AND JOB='ANALYST';
+
+-- Between...AND : If you want to display values from start to end range. 
+
+-- Display info whose sal between 1000 and 3000 
+
+select * from Emp where sal between 1000 and 3000;
+
+select * from Emp where sal not between 1000 and 3000;
+
+-- IN Clause : Used to check for multiple values of particular column. 
+
+-- Display EMploy records whose job is 'CLERK','Manager' or 'PRESIDENT'
+
+select * from Emp where job in('CLERK','MANAGER','PRESIDENT');
+
+select * from Emp where job NOT in('CLERK','MANAGER','PRESIDENT');
+
+
+
