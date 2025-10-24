@@ -117,6 +117,14 @@ select Empno,Ename,job,sal,comm,
 select Empno,Ename,job,sal,comm,
  DENSE_RANK() over(Order By Sal DESC) 'Rno' from Emp;
 
+Display AgentId,FirstName,LastName,City,State,MaritalStatus from Agent Table
+
+select AgentId,FirstName,LastName,CIty,State,MaritalStatus,
+CASE MaritalStatus
+	WHEN 0 THEN 'Unmarried'
+	WHEN 1 THEN 'Married' 
+End 'Status'
+from Agent;
 
 
 
