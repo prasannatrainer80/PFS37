@@ -1,0 +1,195 @@
+-- In Clause : Used to display for multiple values of particular column
+
+-- Display info from Emp whose ename is SCOTT/ADAMS/KING
+
+select * from Emp where Ename IN('SCOTT','ADAMS','KING');
+
+-- Display info from Emp whose Job is MANAGER/CLERK/SALESMAN
+
+select * from Emp where JOB IN('MANAGER','CLERK','SALESMAN');
+
+-- Display INfo from Emp whose Empno is 7900/7902/7499/7566
+
+select * from Emp where Empno IN(7900,7902,7499,7566);
+
+select * from Emp where Empno NOT IN(7900,7902,7499,7566);
+
+LIKE Operator : Used to display records w.r.t. Wildcards (%,_) 
+
+-- Display Info whose name starts with 'S' 
+
+select * from Emp where ename like 'S%';
+
+-- Display Info whose name ends with 'S'
+
+select * from Emp where ename like '%S';
+
+-- Display Info whose ename starts with J and 5th char is S
+
+select * from EMp where Ename LIKE 'J___S';
+
+-- Order By : Used to display table records w.r.t. specific field(s) in ascending or descending order 
+
+select * from Emp order by Ename;
+
+select * from Emp order by Sal DESC;
+
+select * from Emp order by Job,Ename;
+
+select * from Emp order by Job,Ename DESC;
+
+DISTINCT : Used to eliminate duplicate entries at the time of display
+
+select distinct job from emp;
+
+-- SATYA
+-- GANESH
+-- RAVI
+-- PRAVALIKA
+
+Write a Query ensure generate reporting manager name as
+
+for CLERK manager is SATYA
+for SALESMAN manager is GANESH
+for MANAGER manager is RAVI
+for ANALYST manager is PRAVALIKA
+
+select empno,ename,job,sal,mgr,
+CASE JOB
+  WHEN 'CLERK' THEN 'SATYA'
+  WHEN 'SALESMAN' THEN 'GANESH'
+  WHEN 'MANAGER' THEN 'RAVI'
+  WHEN 'ANALYST' THEN 'PRAVALIKA'
+  WHEN 'PRESIDENT' THEN 'No Manager' END 'Reporting'
+ from Emp;
+
+
+Write a Query ensure generate reporting manager name as
+
+for CLERK HeadOffice is CHENNAI
+for SALESMAN HeadOffice is Bangalore
+for MANAGER HeadOffice is Delhi
+for ANALYST HeadOffice is Hyderabad
+for PRESIDENT HeadOffice is ANY BRANCH
+
+select empno,ename,job,sal,mgr,
+CASE JOB
+  WHEN 'CLERK' THEN 'CHENNAI'
+  WHEN 'SALESMAN' THEN 'BANGALORE'
+  WHEN 'MANAGER' THEN 'DELHI'
+  WHEN 'ANALYST' THEN 'HYDERABAD'
+  WHEN 'PRESIDENT' THEN 'ANY BRANCH' END 'HeadOffice'
+ from Emp;
+
+
+select Empno,Ename,Job,Sal,Comm from Emp;
+
+select Empno,Ename,Job,Sal,Comm,
+CASE
+  WHEN COMM IS NULL THEN 0 ELSE Comm
+END 'Updated'
+from Emp;
+
+select Empno,Ename,Job,Sal,Comm,
+CASE
+  WHEN COMM IS NULL THEN 0 ELSE Comm
+END 'Updated',
+CASE
+  WHEN COMM IS NULL THEN SAL ELSE SAL+COMM
+END 'TakeHome'
+from Emp;
+
+-- ROW_NUMBER() : Used to generate ROW_NUMBER() on the field specified 
+
+select Empno,ename,job,sal,comm,
+ROW_NUBMER() Over(Order By Sal DESC) From Emp;
+
+select Empno,Ename,job,sal,comm,
+ row_number() over(Order By Sal DESC) 'Rno' from Emp;
+
+-- RANK() : Used to gerenate RANK() on the field specified 
+
+select Empno,Ename,job,sal,comm,
+ RANK() over(Order By Sal DESC) 'Rno' from Emp;
+
+-- DENSE_RANK() : Used to gererate sequential ranking numbers 
+
+select Empno,Ename,job,sal,comm,
+ DENSE_RANK() over(Order By Sal DESC) 'Rno' from Emp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
