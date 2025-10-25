@@ -1,0 +1,41 @@
+in word 'misissipi' count no.of i's
+
+
+select replace('misissipi','i','');
+
+select length('misissipi')-length(replace('misissipi','i',''));
+
+select 'pavan Vamsi valiveti' 
+
+-- pavan Vamsi 
+
+select substring('pavan vamsi',1,instr('pavan vamsi',' ')) 'FirstName',
+substring('pavan vamsi',instr('pavan vamsi',' ')+1) 'lastname';
+
+select ename from Emp;
+
+select left(ename,1)
+
+select concat(left(ename,1),lower(substring(ename,2))) from Emp;
+
+-- Display all employee names from EMp table whose ename length > 4 chars
+
+-- Add 5 years 3 months and 10 days to the given curDate()
+
+select adddate(curdate(), INTERVAL 5 YEAR);
+
+select adddate(curdate(),INTERVAL 3 MONTH);
+
+
+select addDate(
+adddate(adddate(curdate(), INTERVAL 5 YEAR),INTERVAL 3 MONTH)
+,INTERVAL 10 DAY);
+
+
+
+
+
+
+
+
+
