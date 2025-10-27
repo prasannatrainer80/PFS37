@@ -1,0 +1,14 @@
+1) Display all records from Employ table
+
+2) Display all records who have 1 part name
+
+3) Display all records whose name starts and ends with same character
+
+4) Display all records who have 2 part name and starts and ends with same character
+
+5) Display all records who have 3 part name 
+
+6) Display all records whose first 2 part names starts with same char
+
+
+
