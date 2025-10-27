@@ -10,5 +10,15 @@
 
 6) Display all records whose first 2 part names starts with same char
 
+7) Display How many employees are working in each department
+
+8) Display employee details whose basic from 80000 to 10000 range
+
+9) Display dept-wise Max salary
+
+10) For Emp table, display total employee records for whom comm is null
+
+
+
 
 

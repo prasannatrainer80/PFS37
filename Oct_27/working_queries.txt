@@ -1,0 +1,268 @@
+use dads;
+
+select empno,ename,job,sal,comm from Emp;
+
+select empno,ename,job,sal,comm,
+case 
+  WHEN comm is NULL THEN 0 else comm
+end 'Comm'
+from Emp;
+
+
+select empno,ename,job,sal,comm,
+case 
+  WHEN comm is NULL THEN 0 else comm
+end 'Comm',
+case  
+  WHEN COMM IS NULL THEN SAL ELSE SAL+COMM
+end 'TakeHome'
+from Emp;
+
+ROW_NUMBER() : Used to generate row number to the table records based on particular field. 
+
+select empno,ename,job,sal,row_number() 
+OVER(order by sal desc) Rno from emp;
+
+RANK() : Used to generate rank number on the field specified.
+
+select empno,ename,job,sal,RANK() 
+OVER(order by sal desc) Rno from emp;
+
+DENSE_RANK()  Used to generate sequential ranking on the field specified. 
+
+select empno,ename,job,sal,DENSE_RANK() 
+OVER(order by sal desc) Rno from emp;
+
+String Functions 
+_________________
+
+1) Instr() : used to display the first occurrence of given char in a string. 
+
+select instr('bhargavi','a');
+
+select ename,instr(ename,'A') From Emp;
+
+2) Length() : Displays length of string 
+
+select length('ganesh');
+
+select ename,length(ename) from Emp;
+
+3) Reverse() : Displays the string in reverse order
+
+select ename, reverse(ename) from Emp;
+
+select reverse('venkata');
+
+4) LEft() : Displays no.of left-side chars
+
+5) Right() : Displays no.of right-side chars
+
+select left('Venkata',4), right('Venkata',4);
+
+select ename,left(ename,4),right(ename,4) from emp;
+
+6) Lower : Displays in lower case
+
+7) Upper : Displays in upper case
+
+select upper('Bharvavi'),lower('Bhargavi');
+
+select ename,lower(ename),upper(ename) from emp;
+
+8) Substring() : Used to display part of the string 
+
+select substring('welcome',3,4);
+
+9) Concat() : used to concatenate multiple strings
+
+select concat('welcome',' to ','mysql');
+
+10) replace() : Used to replace old value with new value in all occurrences.
+
+select replace('Java Training','Java','Python');
+
+
+-- misissipi count no.of i's 
+
+select replace('misissipi','i','');
+
+select length('misissipi')-length(replace('misissipi','i',''));
+
+select 'Pradeep kumar yerram';
+
+-- number functions
+
+-- abs() : Returns absolute value 
+
+select abs(-12);
+
+-- power(n,m) : Returns n power m value
+
+select power(2,3);
+
+-- sqrt() : Returns sqrt value
+
+select sqrt(49);
+
+-- ceiling() : returns greatest integer value
+
+select ceiling(12.0000001);
+
+-- floor() : Returns smallest integer value
+select floor(12.9999999);
+
+select round(8776.8677,3);
+select round(8776.8677,2);
+select round(8776.8677,1);
+select round(8776.8677,0);
+select round(8776.8677,-1);
+select round(8776.8677,-2);
+select round(8776.8677,-3);
+
+-- Sql Date Functions
+
+-- curdate() : used to display current date
+select curDate();
+
+-- curTime() : Used to display current time
+select curTime();
+
+
+select dayofWeek(curDate());
+
+select quarter(curdate());
+
+-- last_day() : Displays the last day of date of month specified
+
+select last_day(curdate());
+
+-- adddate() : Used to add no.of days 
+
+select adddate(curdate(),INTERVAL 5 day); 
+select adddate(curdate(), INTERVAL 3 MONTH);
+select adddate(curdate(), INTERVAL 4 YEAR);
+
+select year(curdate());
+
+select day(curdate());
+
+select month(curdate());
+
+use pfs37;
+
+select empno,ename,job,sal,hiredate,year(hiredate) from emp;
+
+select empno,ename,job,sal,hiredate,year(hiredate) from emp
+where year(hiredate) between 1980 and 1985;
+
+select agentId,firstName,lastName,city,dob,year(dob) from Agent
+where year(dob) between 1980 and 1985;
+
+-- Aggregate functions 
+
+-- SUM() : Performs sum operation on the numeric field 
+
+select sum(sal) from Emp;
+
+-- AVG() : Prints avg.on numeric field specified
+
+select avg(sal) from Emp;
+
+-- MAX() : Displays max value 
+
+select max(sal) from Emp;
+
+-- MIN() : Displays min. value
+
+select min(sal) from Emp;
+
+-- COUNT(*) : Displays total no.of records of a table 
+
+select count(*) from Emp;
+
+select count(*) from Agent;
+
+group by : allows you to generate summary reports on the field specified. 
+
+select field(s), aggr_function from table_name
+group by field 
+
+select job,sum(sal) from Emp
+group by job;
+
+select job,avg(sal) from Emp
+group by job;
+
+-- Display total no.of emplyoees working in each dept(job) 
+
+select job,count(*) from Emp
+group by job;
+
+--Display max salary from emp table group by job
+
+select job,max(sal) from Emp
+group by job;
+
+-- Display min salary from Emp table group by job
+
+select job,min(sal) from Emp
+group by job;
+
+select job,sum(sal) 'total sal',
+avg(sal) 'avg sal',
+max(sal) 'max sal',
+min(sal) 'min sal',
+count(*) 'total recs' from Emp
+group by job;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
