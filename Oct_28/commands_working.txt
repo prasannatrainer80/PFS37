@@ -1,0 +1,170 @@
+use pfs37;
+
+-- Display All records from Emp table 
+
+select * from Emp;
+
+-- Display empno,ename,job,sal,hiredate,comm from Emp table 
+
+-- Display all records whose hired in 1981 year (use hiredate column) 
+
+select * from Emp where year(hiredate)=1981;
+
+-- Display all records who hired from 1981 to 1985 (use hiredate column) 
+
+select * from Emp where hiredate
+between 1981 and 1985;
+
+-- Display who are joined on 1980-12-17 (use hiredate column) 
+
+select * from Emp where hiredate='1980-12-17';
+
+-- Display list of emp records whose joined from 1982-01-01 to 1985-12-31
+
+select * from Emp where hiredate 
+between '1982-01-01' AND '1985-12-31';
+
+-- Display list of emp records whose joined in feb month 
+
+select * from Emp where month(hiredate)=2;
+
+-- Display the last hiredate record info 
+
+select max(hiredate) from Emp;
+
+-- Display all records from Agent table
+
+
+-- Display AgentId, FIrstName,lastname,city,Dob,MaritalStatus from Agent table
+
+-- Display all records of agent who are from India (use COuntry attribute) 
+
+-- Display agent dob who is oldest in the table records (senior person details based on dob) 
+
+select min(dob) from Agent;
+
+-- Display agent who is youngest  print dob
+
+select max(dob) from Agent;
+
+-- Display agent details who born from 1983 to 1987
+
+select * from Agent
+where year(dob) between 1983 and 1987;
+
+-- Display total agents who are born from 1983 to 1987 
+
+select count(*) from Agent
+where year(dob) between 1983 and 1987;
+
+-- Display all agent details who are unmarried (maritalstatus = 0) 
+
+-- Display how many agents are married 
+
+select count(*) from Agent where maritalstatus=1;
+
+-- Display all agent details who are from 'USA' (use country attribute) 
+
+select * from Agent where country='USA';
+
+-- Display all agent details who are from USA and not-married 
+
+-- Display all country details by removing duplicates
+
+-- Display all agent details whose FirstName starts with 'S';
+
+-- Display all agent details whose firstName contains less than 6 chars 
+
+select * from Agent where length(firstName) < 6;
+
+-- Display all agent details whose FirstName contains char 'i' 
+
+-- Display total agents of  Male/Female agents (count) 
+
+select Gender,count(*) 
+from Agent group by gender;
+
+-- Display info about (how many agents are married or unmarried) 
+
+-- Display how many agents are there from each city 
+
+select city,count(*) from Agent
+group by city;
+
+-- Display total salary paying to each job (from emp table) whose job is
+'CLERK','SALESMAN','ANALYST'
+
+select job,sum(sal) from emp
+where job in('CLERK','SALESMAN','ANALYST') 
+Group by job;
+
+-- Display job details who have more than 1 employee 
+
+select job,count(*) From emp
+group by job
+having count(*) > 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
