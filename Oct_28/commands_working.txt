@@ -104,6 +104,8 @@ select job,count(*) From emp
 group by job
 having count(*) > 1;
 
+-- Display AgentId,MaritalStatus and generate column as maritalstatus 0 then 'UnMarried' maritalStatus 1 then 'Married'
+
 
 
 

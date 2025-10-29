@@ -1,0 +1,166 @@
+Various types of commands in database are 
+
+1) DDL (Data Definition Language) 
+
+	CREATE
+
+	ALTER
+
+	DROP
+
+	TRUNCATE 
+
+2) DML
+
+	INSERT : Used to insert records into particular table. 
+
+	 Insert into table_name(field1,field2,field3...) 
+		values(value1,value2,value3...)
+	
+	UPDATE
+
+	DELETE 
+
+3) DQL
+
+4) DCL
+
+Data Types : 
+____________
+
+int
+float
+numeric  -> Numeric(9,2) 
+date (yyyy-MM-dd) 
+time
+datetime
+char
+varchar
+enum
+
+-- To create a table, use the syntax as 
+
+create table table_name
+(
+   field1 data_type,
+   field2 data_type
+   ...
+   ...
+   ...
+);
+
+----------------------------------------------------------------------
+
+Employee(Empno,Name,Gender,Dept,Desig,Salary) 
+
+Empno -> Primary Key INT
+Name -> varchar(30) NOT NULL
+Gender -> ENUM (MALE/FEMALE)
+Dept -> varchar(30) DA/DS/JAVA/PYTHON
+Desig -> varchar(30) NOT NULL
+Salary -> numeric(9,2) from 10000 to 80000 
+
+___________________________________________________________
+
+
+use dads;
+
+Create Table Employee
+(
+   empno INT Primary Key,
+   name varchar(30) NOT NULL,
+   gender ENUM('MALE','FEMALE'),
+   Dept varchar(30) check(Dept IN('DA','DS','PYTHON','JAVA')),
+   Desig varchar(30) NOT NULL,
+   Salary numeric(9,2) check(Salary between 10000 and 80000)
+);
+
+Insert into Employee(Empno,Name,Gender,Dept,Desig,Salary)
+values(1,'Somu','MALE','DA','Trainee',73222),
+(2,'Pradeep','MALE','DS','Expert',72344),
+(3,'Navya','FEMALE','DA','Manager',77422);
+
+--Student(Sno,Name,Sub1,Sub2,Sub3,total,aveg) 
+
+Sno -> INT (PK)
+Name -> varchar(30) NOT NULL
+Sub1 -> INT from 1 to 100
+Sub2 -> INT from 1 to 100
+Sub3 -> INT from 1 to 100
+
+create Table Student
+(
+   Sno INT Primary Key,
+   Name varchar(30) NOT NULL,
+   Sub1 INT check(Sub1 between 1 and 100),
+   Sub2 INT check(Sub2 Between 1 and 100),
+   Sub3 INT check(Sub3 Between 1 and 100),
+   Total Numeric(9,2),
+   Aveg numeric(9,2)
+);
+
+Insert into Student(Sno,Name,SUb1,Sub2,SUb3) 
+values(1,'Bhargavi',88,56,82),
+(2,'Bharadwaj',88,88,83);
+
+-- Customer(CustId,CustName,Gender,City,State,BillAmount)
+
+CustId -> Int Primary Key Auto_Increment
+CustName -> varchar(30) NOT NULL
+Gender -> ENUM(MALE/FEMALE)
+City -> varchar(30)
+State -> varchar(10),
+BillAmount -> Numeric(9,2) 
+
+Create Table Customer
+(
+   CustId INT Primary Key AUTO_INCREMENT,
+   CustName varchar(30) NOT NULL,
+   Gender ENUM('MALE','FEMALE'),
+   City varchar(30),
+   State varchar(10),
+   BillAmount numeric(9,2)
+);
+
+Insert into Customer(CustName,Gender,City,State,BillAMount)
+values('Raj','MALE','Chennai','TN',84234.44),
+('Mahesh','MALE','Hyderabad','TS',88323.44),
+('Neha','FEMALE','Delhi','UP',88412.33);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
