@@ -1,0 +1,310 @@
+use JSF41;
+
+In MySQL, you can create a database, by using command as
+
+create database database_name 
+
+Example :
+
+drop database if exists JSF41new;
+
+create database JSF41new;
+
+show databases;
+
+drop database JSF41new;
+
+-- how to change to JSF41New database 
+
+use JSF41New;
+
+-- Change to JSF41 db again
+
+use JSF41;
+
+-- Drop the database JSF41New; 
+
+syntax : DROP DATABASE DataBase_Name;
+
+DROP DATABASE JSF41NEW;
+
+-- To see list of databases
+
+show databases;
+
+There are various types of commands in SQL as
+
+1) DDL (Data Definition Language) 
+
+	CREATE
+
+	ALTER
+
+	DROP
+
+	TRUNCATE 
+
+2) DML
+
+	INSERT : Used to add data to the table.
+
+	 Insert into table_name(field1,field2,field3...) 
+		values(value1,value2,value3...)
+
+	UPDATE
+
+	DELETE 
+
+3) DQL
+
+4) DCL
+
+Data Types : 
+____________
+
+int
+float
+numeric  -> Numeric(9,2) 
+date (yyyy-MM-dd) 
+time
+datetime
+char
+varchar
+enum
+
+
+Employee(Empno,Name,Gender,Dept,Desig,Salary) 
+
+Empno -> Primary Key INT
+Name -> varchar(30) NOT NULL
+Gender -> ENUM (MALE/FEMALE)
+Dept -> varchar(30) DA/DS/JAVA/PYTHON
+Desig -> varchar(30) NOT NULL
+Salary -> numeric(9,2) from 10000 to 80000 
+
+_____________________________________________________________
+
+use JSF41;
+
+CREATE TABLE Employee
+(
+   Empno INT Primary Key,
+   Name varchar(30) NOT NULL,
+   Gender ENUM('MALE','FEMALE'),
+   Dept varchar(30) check(Dept IN('DS','DA','JAVA','PYTHON)),
+   Desig varchar(30) NOT NULL,
+   Salary numeric(9,2) check(salary between 10000 and 80000)
+);
+
+Insert into Employee(Empno,Name,Gender,Dept,Desig,Salary)
+values(1,'Bheema','MALE','Java','Expert',73323),
+(2,'Tirupathi','MALE','Java','Manager',77233),
+(3,'Revathi','FEMALE','Python','Expert',72223);
+
+
+--Student(Sno,Name,Sub1,Sub2,Sub3,total,aveg) 
+Sno -> INT (PK)
+Name -> varchar(30) NOT NULL
+Sub1 -> INT from 1 to 100
+Sub2 -> INT from 1 to 100
+Sub3 -> INT from 1 to 100
+create Table Student
+(
+   Sno INT Primary Key,
+   Name varchar(30) NOT NULL,
+   Sub1 INT check(Sub1 between 1 and 100),
+   Sub2 INT check(Sub2 Between 1 and 100),
+   Sub3 INT check(Sub3 Between 1 and 100),
+   Total Numeric(9,2),
+   Aveg numeric(9,2)
+);
+
+
+Insert into Student(Sno,Name,SUb1,Sub2,SUb3) 
+values(1,'Bhargavi',88,56,82),
+(2,'Bharadwaj',88,88,83);
+
+select * from Student;
+
+-- Customer(CustId,CustName,Gender,City,State,BillAmount)
+CustId -> Int Primary Key Auto_Increment
+CustName -> varchar(30) NOT NULL
+Gender -> ENUM(MALE/FEMALE)
+City -> varchar(30)
+State -> varchar(10),
+BillAmount -> Numeric(9,2) 
+
+use pfs37;
+
+Create Table Customer
+(
+   CustId INT Primary Key AUTO_INCREMENT,
+   CustName varchar(30) NOT NULL,
+   Gender ENUM('MALE','FEMALE'),
+   City varchar(30),
+   State varchar(10),
+   BillAmount numeric(9,2)
+);
+
+Insert into Customer(CustName,Gender,City,State,BillAMount)
+values('Raj','MALE','Chennai','TN',84234.44),
+('Mahesh','MALE','Hyderabad','TS',88323.44),
+('Neha','FEMALE','Delhi','UP',88412.33);
+
+select * from Customer;
+
+-- Vendor (vendorId+,VendorName,Gender,City,Mobile) 
+
+VendorID ->PK AI
+City -> Default 'Hyderabad'
+Mobile -> Unique varchar 
+
+use dads;
+create table Vendor
+(
+   VendorId INT Primary Key Auto_Increment,
+   VendorName varchar(30) NOT NULL,
+   Gender ENUM('MALE','FEMALE'),
+   City varchar(30) DEFAULT 'Hyderabad',
+   Mobile varchar(30) UNIQUE
+);
+
+Insert into Vendor(vendorName,Gender,Mobile) values('Srinivas','MALE',
+'8823442211');
+
+Insert into vendor(VendorName,Gender,City,Mobile) values('Gayathri','FEMALE',
+'Kakinada','848235522');
+
+select * from Vendor;
+
+drop table Employee;
+
+Employee(Empno+,Name,Gender,Dept,Desig,Salary) 
+LeaveDetails(LeaveId+,Empno-,LeaveStartDate,LeaveEndDate,NoOfDays,
+LeaveReason,ManagerComments)
+
+Empno -> Primary Key INT
+Name -> varchar(30) NOT NULL
+Gender -> ENUM (MALE/FEMALE)
+Dept -> varchar(30) DA/DS/JAVA/PYTHON
+Desig -> varchar(30) NOT NULL
+Salary -> numeric(9,2) from 10000 to 80000 
+Employee(Empno,Name,Gender,Dept,Desig,Salary) 
+
+
+CREATE TABLE Employee
+(
+   Empno INT Primary Key,
+   Name varchar(30) NOT NULL,
+   Gender ENUM('MALE','FEMALE'),
+   Dept varchar(30) check(Dept IN('DS','DA','JAVA','PYTHON)),
+   Desig varchar(30) NOT NULL,
+   Salary numeric(9,2) check(salary between 10000 and 80000)
+);
+
+Insert into Employee(Empno,Name,Gender,Dept,Desig,Salary)
+values(1,'Bheema','MALE','Java','Expert',73323),
+(2,'Tirupathi','MALE','Java','Manager',77233);
+
+LeaveDetails(LeaveId+,Empno-,LeaveStartDate,LeaveEndDate,NoOfDays,
+LeaveReason,ManagerComments)
+
+Create table LeaveDetails
+(
+   LeaveId INT Primary Key Auto_Increment,
+   Empno INT REFERENCES Employee(Empno),
+   LeaveStartDate Date,
+   LeaveEndDate Date,
+   NoOfDays INT,
+   LeaveReason varchar(30),
+   ManagerComments varchar(30)
+);
+
+Insert into LeaveDetails(empno,leavestartdate,leaveenddate,leaveReason)
+values(1,'2025-10-10','2025-10-14','Going Home'),    
+    (1,'2025-12-12','2025-12-20','Going Trip');
+
+select * from LeaveDetails;
+
+____________________________________________________________
+
+-- Department(DeptCode+,DeptName,DeptHead)
+-- DeptCode -> PK (Varchar(
+---DetpName -> Varchar
+-- DeptHead -> varchar
+
+-- Employ(EmpId+,Empname,Doj,Salary,Dob,DeptCode-)
+-- EmpID -> varchar pk 
+-- EmpName - varchar
+-- Doj -> Date
+-- Salary -> numeric(9,2)
+-- Dob -> Date
+-- DeptCode - varchar FK
+
+-- Project(ProjCode,EmpId-,Hours)
+
+Make composite primary key on (ProjCode+EmpID) 
+
+
+Drop Database If Exists ProjectPFS37;
+
+Create database ProjectPFS37;
+
+use ProjectPFS37;
+
+Create Table Department
+(
+   DeptCode varchar(30) Primary Key,
+   DeptName varchar(30) NOT NULL,
+   DeptHead varchar(30) NOT NULL
+);
+
+Insert into Department(DeptCode,DeptName,DeptHead)
+values('D001','Java','Kishore'),
+      ('D002','Dotnet','Anand'),
+      ('D003','Admin','Murari'),
+      ('D004','Testing','Shanthi'),
+      ('D005','Accounts','Krishna');
+
+-- Employ(EmpId+,Empname,Doj,Salary,Dob,DeptCode-)
+-- EmpID -> varchar pk 
+-- EmpName - varchar
+-- Doj -> Date
+-- Salary -> numeric(9,2)
+-- Dob -> Date
+-- DeptCode - varchar FK
+
+create table Employ
+(
+   EmpId varchar(30),
+   EmpName varchar(30) NOT NULL,
+   Doj Date,
+   Salary Numeric(9,2),
+   Dob Date,
+   DeptCode varchar(30),
+   constraint pk_employ_empId primary key(EmpId),
+   constraint fk_employ_deptCode foreign key(deptCode)
+	References Department(deptCode)
+);
+
+Insert into Employ(EmpId,EmpName,Doj,Salary,Dob,DeptCode)
+values('E001','Ramya','2024-10-10',48823,'2005-10-10','D001'),
+('E002','Mukesh','2024-02-24',88423,'2004-11-22','D002'),
+('E003','Narendar','2024-10-10',78233,'2002-11-11','D003'),
+('E004','Sandhan','2024-10-10',66222,'2003-12-12','D001');
+
+
+-- Project(ProjCode,EmpId-,Hours)
+
+Create Table Project
+(  
+    ProjCode varchar(30),
+    EmpId varchar(30),
+    Hours Int,
+    constraint fk_project_empId Foreign key(EmpId) REferences
+		Employ(EmpId),
+    constraint pk_project_cid primary key(ProjCode,EmpId)
+);
+
+Insert into Project(ProjCode,EmpId,Hours) values('P001','E001',884),
+('P002','E001',8823),('P001','E002',234);
