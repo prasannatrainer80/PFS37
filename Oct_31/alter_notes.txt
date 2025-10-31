@@ -1,0 +1,26 @@
+Alter :  This command allows you to add/modify/delete columns or constraints for the given table. 
+
+How to add primary key by using alter command 
+
+syntax : 
+
+alter table table_name
+add constraint constraint_name primary key(fieldname)
+
+How to modify a column using alter command 
+
+alter table table_name
+modify field new value;
+
+How to add column to the table
+
+alter table table_name
+add column datatype
+
+How to drop column from the table
+
+alter table table_name
+drop column column_name
+
+
+

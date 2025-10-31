@@ -1,0 +1,25 @@
+
+
+Course(CourseId,CourseName,TrainerName,Fee,Status)
+
+Create Table Course
+(
+   course_Id int,
+   courseName varchar(5),
+   TrainerName INT,
+   Fee varchar(30),
+   Status INT
+);
+
+-- Add Primary Not Auto_INcrement on Course_Id 
+-- Change courseName to varchar(20),
+-- Change trainerName to varchar(20)
+-- Change fee to numeric(9,2)
+-- Add check constraint to Status Column as 0,1 using alter command
+
+alter table Course
+modify status int check(status in(0,1));
+
+
+
+
