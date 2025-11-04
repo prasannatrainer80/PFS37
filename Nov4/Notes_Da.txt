@@ -1,37 +1,4 @@
-use JSF40;
-
-drop table if exists test;
-
-create table Test
-(
-    AccountNo INT Primary Key
-);
-
-select case when max(accountNo) IS NULL THEN 1 
-else max(accountNo)+1 end 'accno' from test;
-
-Insert into Test values(1),(2),(3);
-
-Create Table Users
-(  
-   UserName varchar(30) Primary Key, passcode varchar(30) NOT NULL
-);
-
-Insert into Users(username,passcode) values('Vinathi','Codegnan'),
-('Manoj','Manoj123');
-
-select count(*) cnt from Users where username='Vinathi' AND
-Passcode='Codegnan';
-
-
-Update : Used to update one or more records for the given table. 
-
-syntax : 
-
-update table_name
-set field1=value,field2=value ... {where condition}
-
-use PFS37;
+use DaDs;
 
 drop table if exists student;
 
@@ -46,15 +13,16 @@ create table student
    Aveg numeric(9,2)
 );
 
-Insert into Student(sno,Name,Sub1,Sub2,Sub3) values(1,'Vinathi',87,56,88),
-(2,'Manoj',87,65,77),
-(3,'Pavan',88,87,53),
-(4,'Prasanna',87,66,77);
 
+Insert into Student(sno,Name,Sub1,Sub2,Sub3) values(1,'Pradeep',87,56,88),
+(2,'Akshitha',87,65,77),
+(3,'Ganesh',88,87,53),
+(4,'Priyanka',87,66,77);
 
-update student set total=Sub1+Sub2+Sub3, aveg=(sub1+sub2+sub3)/3;
+update student set total = sub1+sub2+sub3, aveg=(sub1+sub2+sub3)/3;
 
 select * from student;
+
 
 drop table if exists EmployPayroll;
 
@@ -73,8 +41,8 @@ create table EmployPayRoll
 );
 
 Insert into EmployPayroll(EmpId,Name,Salary) 
-values(1,'Chandana',77723),(2,'Vanish',77234),
-(3,'Varsha',77233);
+values(1,'Bhargavi',77723),(2,'Bharadwaj',77234),
+(3,'Ramya',77233);
 
 Update EmployPayroll set Hra=Salary*0.03,Da=Salary*0.01,Ta=Salary*0.012;
 
@@ -83,8 +51,6 @@ Update EmployPayroll set Tax=Salary * 0.12, Pf = Salary * 0.11;
 Update EmployPayroll set Gross = Salary + HRa + Da + Ta;
 
 Update EmployPayroll Set NetPay = Gross - Tax - PF;
-
-select * from EmployPayroll;
 
 drop table if exists AgentNew;
 
@@ -103,48 +69,30 @@ values('Raj','Kishore','Chennai','TN'),
 ('Mahesh','Manne','Bangalore','KA'),
 ('Archana','Arora','Delhi','UP');
 
-
 Update AgentNew set FullName = concat(FirstName,' ',lastName);
 
+select * from AgentNew;
 
 
+For employ table
 
+-- Increase Basic by 5000 for name is 'Suhaas'
 
+Update Employ 
+set Basic=Basic+5000 WHERE Name='Suhaas';
 
+-- For All 'Java' Dept employees increase basic by 1000;
 
+update Employ
+set Basic = Basic + 1000 where dept='Java';
 
+-- Update basic by 90000 for empno 5
 
+-- update Name as 'Karima Saleem' for Name 'Kareem'
 
+-- Update Dept as 'QA' for Name 'Karthik'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- Update Desig as 'Manager' for Empno 3 
 
 
 

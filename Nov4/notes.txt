@@ -1,0 +1,118 @@
+use JSF40;
+
+drop table if exists test;
+
+create table Test
+(
+   Id int Primary key Auto_Increment,
+   Mstat INT Check(MStat in (0,1)),
+   description varchar(30)
+);
+
+Insert into Test(Mstat) values(0),(1),(0),(0),(1),(1);
+
+update test 
+set description = case Mstat
+WHEN 0 THEN 'Unmarried'
+WHEN 1 THEN 'Married'
+End;
+
+select * from Agent;
+
+select agentId,FirstName,MI,LastName,FullName from Agent;
+
+-- Write a Query as modify fullName as firstName + ' ' + Mi + ' ' +lastName
+
+update agent set 
+fullname=concat(firstname,' ',mi,' ',lastName);
+
+-- Write a query to modify city as 'chennai' for whose lastname is 'Tangvel'
+
+update agent set city='chennai' where lastname='Tangvel';
+
+-- Write a query to modify city as 'Delhi', state as 'UP, Country as 'India'
+for firstname is 'Sunitha'
+
+Update Agent set city='Delhi',state='UP',Country='India' Where FirstName='Sunitha';
+
+-- Write a query to modify firstname as 'Vinod' mi as 'k' lastname as 'kumar'
+for AgentId 5 
+
+Delete : Used to delete all or specific records from given table. 
+
+syntax : 
+
+Delete from Table_name where condition;
+
+example : 
+
+Delete from agent where agentId= 15;
+
+What is the difference between DELETE and TRUNCATE 
+
+Truncate can delete all records, where DELETE can delete partial or all records. 
+
+By using delete command you can rollback the records, but by using Truncate you cannot rollback the records. 
+
+How it works, as a database contains 2 files as MDF and Log file
+
+All periodic activities are recorded in Log file (INSERT/UPDATE/DELETE) once you rollback it cancels all the operations. 
+
+________________________________________________________________
+
+Joins : Allows you to extract data from more than one table. 
+For joins, we need the table to be in parent/child relationship. As referential integrity must be there. 
+
+There are various types of joins as 
+
+1) Inner Join : Acts as INTERSECT operator, used to extract only the common records from the given table(s).
+
+-- Inner Join Syntax for Dept and Emp tables 
+
+select Dept.Deptno,Dname,Empno,Ename,job,sal
+from Dept INNER JOIN EMP On Dept.Deptno = Emp.Deptno;
+
+select D.Deptno,Dname,Empno,Ename,job,sal
+from Dept D INNER JOIN Emp E ON D.Deptno=E.Deptno;
+
+select A.AgentID,FirstName,LastName,City,SSN,P.PolicyID,APpNumber,
+ModalPremium,AnnualPremium
+from Agent A INNER JOIN AgentPolicy AP 
+ON A.AgentId = Ap.AgentID INNER JOIN Policy P 
+ON P.PolicyID = AP.PolicyID;
+ 
+
+
+
+2) Outer Join
+
+3) Cross Join
+
+4) Self Join
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
