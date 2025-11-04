@@ -1,4 +1,4 @@
-use dads;
+use PFS37;
 
 drop table if exists agentpolicy;
 
@@ -119,6 +119,3 @@ VALUES(1,1,2),
 					(4,3,1),
 					(5,1,2),
 					(5,2,1);
-
-
-
