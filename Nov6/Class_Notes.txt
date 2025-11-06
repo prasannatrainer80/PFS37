@@ -1,0 +1,202 @@
+Joins : Allows you to extract data from more than one table. 
+
+There are various types of joins as 
+
+1) Inner Join : Acts as an INTERSECT operator, used to extract only the common records from the given table(s).
+
+2) Outer Join : There are 2 types of OUTER Join as 
+
+	-> LEFT JOIN : All the records from the LEFT-SIDE table, and matching records from the right-side table. If any child table record not there, then it would be replaced with NULL keyword. 
+
+
+select D.Deptno,Dname,Empno,Ename,Job,Sal
+from DEPT D LEFT JOIN EMP E ON D.Deptno = E.Deptno;
+
+select A.AgentID,FirstName,LastName,City,State,P.PolicyID,AppNumber, 
+ModalPremium, AnnualPremium
+from Agent A LEFT JOIN AgentPolicy AP ON 
+A.AgentId = AP.AgentID LEFT JOIN Policy P ON
+P.PolicyID = AP.PolicyID;
+
+
+	-> RIGHT JOIN : All records from the right-side table and matching records from the left-side table.
+
+select D.Deptno,Dname,Empno,Ename,Job,Sal
+from DEPT D RIGHT JOIN EMP E ON D.Deptno = E.Deptno;
+
+select A.AgentID,FirstName,LastName,City,State,P.PolicyID,AppNumber, 
+ModalPremium, AnnualPremium
+from Agent A RIGHT JOIN AgentPolicy AP ON 
+A.AgentId = AP.AgentID RIGHT JOIN Policy P ON
+P.PolicyID = AP.PolicyID;
+
+3) Cross Join : Generates cartician product of given 2 tables. Table A contain n records, Table b Contains m records then it generates (n*m) records 
+
+select * from Agent cross join AgentPolicy;
+
+select * from Policy cross join AgentPolicy;
+
+4) Self Join : If a table joins with itself known as self join. 
+
+select empno,ename,mgr from Emp;
+
+select E1.Empno 'Manager No', E1.Ename 'Manager Name', 
+E2.Empno 'Employ No', E2.Ename 'Employ Name'
+from Emp E1 INNER JOIN Emp E2 ON E1.Empno = E2.Mgr
+order by E1.Empno;
+
+Subqueries : Sometimes it is not possible to extract data by using single select statement, to overcome this we need the help of subqueries. A subquery is a query, that which is having another query inside. The query which inside known as Inner Query, the query which is outside known as Outer Query. Everytime, the result of inner query will be send as input to the outer query.
+
+--> DIsplay max salary 
+
+select max(sal) from Emp;
+
+-- Display Employ Name who is getting max salary 
+
+select ename from Emp where sal = (select max(sal) from Emp);
+
+-- Display 2nd max salary 
+
+select max(sal) from Emp where sal < (select max(sal) from Emp);
+
+-- Display Employ name who is getting max salary 
+
+select ename from Emp where 
+sal = (
+select max(sal) from Emp where sal < (select max(sal) from Emp)
+);
+
+-- Display 2nd min salary
+
+-- Display Employ name who is getting 2nd min salary
+
+There are 2 types of subqueries as 
+
+(i) Single Row : A query that which returns only one row at a time known as single row 
+
+(ii) Multi Row : A query that which returns more than one row known as Multi Row Subquery. 
+
+You can handle multi row subqueries by using 
+
+ALL -> Acts as AND Operator
+
+ANY -> Acts as OR Operator 
+
+Example : 
+
+Empno <> ALL(10,20,30) means Empno <> 10 AND Empno <> 20 AND Empno <> 30;
+
+Empno = ANY(10,20,30) means Empno = 10 OR Empno = 20 OR Empno = 30;
+
+-- Display Idle Agents (Means AgentId exists in Agent table, but not in AgentPolicy Table) 
+
+select * from Agent where agentId <> (select agentId from AgentPolicy);
+
+
+select * from Agent where agentId <> ALL(select agentId from AgentPolicy);
+
+-- Display Idle Policies (Means PolicyId exists in Policy table, but not in
+AgentPolicy Table) 
+
+select * from Policy where PolicyID <> ALL(select policyId from AgentPolicy);
+
+-- Display Matching Agent Records (means agentId exists in Agent and AgentPolicy) 
+
+select * from Agent where AgentId = ANY(select AgentId from AgentPolicy);
+
+-- Display Matching Policy Records (Means PolicyID exists in Policy and 
+AgentPolicy) 
+
+select * from Policy WHERE PolicyId = (select PolicyId from AgentPolicy);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
