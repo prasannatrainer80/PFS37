@@ -4,6 +4,16 @@ There are various types of joins as
 
 1) Inner Join : Acts as an INTERSECT operator, used to extract only the common records from the given table(s).
 
+select D.Deptno,Dname,Empno,Ename,Job,Sal
+from DEPT D INNER JOIN EMP E ON D.Deptno = E.Deptno;
+
+select A.AgentID,FirstName,LastName,City,State,P.PolicyID,AppNumber, 
+ModalPremium, AnnualPremium
+from Agent A INNER JOIN AgentPolicy AP ON 
+A.AgentId = AP.AgentID INNER JOIN Policy P ON
+P.PolicyID = AP.PolicyID;
+
+
 2) Outer Join : There are 2 types of OUTER Join as 
 
 	-> LEFT JOIN : All the records from the LEFT-SIDE table, and matching records from the right-side table. If any child table record not there, then it would be replaced with NULL keyword. 
@@ -109,7 +119,13 @@ AgentPolicy)
 
 select * from Policy WHERE PolicyId = (select PolicyId from AgentPolicy);
 
+-- Display Employee Details who took leave 
 
+select * from Employee where empno = ANY(select empno from LeaveDetails);
+
+-- Display Employee Details who not taken leave 
+
+select * from Employee where empno <> ALL(select empno from LeaveDetails);
 
 
 
