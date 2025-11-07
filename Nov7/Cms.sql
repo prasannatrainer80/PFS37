@@ -1,6 +1,6 @@
 drop database if exists cms;
 create database cms;
-use cmshexa;
+use cms;
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
 `CUS_ID` int NOT NULL AUTO_INCREMENT,
