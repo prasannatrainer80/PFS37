@@ -1,0 +1,15 @@
+Exercises
+
+1.	_______ clause is used to select groups based on condition.
+2.	Select count(*) from students;  Is it a valid query.
+3.	What is the order of WHERE, GROUP BY and ORDER BY.
+4.	Display ROLLNO of students who have paid for more than twice.
+5.	Display average time taken for subject ORA.
+6.	Display faculty who can take more than 2 courses.
+7.	Display least course fee.
+8.	Display the number of months between first and last batches of course Java.
+9.	Display Year, course and number of batches of that course.
+10.	Display faculty who has got A grade for more than 1 subject.
+11.	Display the number of students joined in each month.
+12.	Display the number of students joined in each month  of the current year.
+

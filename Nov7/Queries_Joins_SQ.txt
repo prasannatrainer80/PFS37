@@ -48,6 +48,58 @@ MEN_ITEM,MEN_PRICE
 from Customer C RIGHT JOIN Orders O ON C.Cus_ID = O.Cus_Id
 RIGHT JOIN Menu M ON M.Men_ID = O.Men_Id;
 
+-- Apply Join for Vendor and Orders table
+
+---------------------------------------------------------
+
+-- Display max. menu price 
+
+select max(men_price) from menu;
+
+-- Display Item name for which price is max. 
+
+select * from menu where men_price = (select max(men_Price) from menu);
+
+-- Display 2nd max menu price 
+
+select max(men_price) from Menu where men_price < 
+(select max(men_price) from Menu);
+
+-- Display Item Name for the 2nd max menu price
+
+select * from Menu where men_price = 
+(
+select max(men_price) from Menu where men_price < 
+(select max(men_price) from Menu));
+
+-- Display Idle Menu Items (means which menu items are not ordered)
+
+select * from Menu where men_ID <> ALL(select men_id from orders);
+
+-- Display Menu Items which got orders (means which items ordered )
+
+select * from Menu where men_id = ANY(select men_id from Orders);
+
+-- Display customer details who placed orders 
+
+select * from customer where cus_id = ANY(select cus_id from orders);
+
+-- Display customer details who are not placed orders 
+
+select * from customer where cus_Id <> ALL(select cus_id from orders);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

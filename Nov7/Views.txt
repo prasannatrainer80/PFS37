@@ -1,0 +1,38 @@
+Views : A view is a virtual table, which allows you to store the select command. A view will not contains any data of its own, once you create a view and call select command the data will be fetched from table(s).
+
+syntax : 
+
+create view view_name
+as 
+  select command;
+
+use pfs37;
+
+create view vwEmployData
+AS
+  select * from Emp;
+
+select * from vwEmployData;
+
+use cms;
+
+create view vwCustomer
+AS
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,M.Men_Id,Ord_BillAmount,
+MEN_ITEM,MEN_PRICE
+from Customer C INNER JOIN Orders O ON C.Cus_ID = O.Cus_Id
+INNER JOIN Menu M ON M.Men_ID = O.Men_Id;
+
+Alter view vwCustomer
+AS
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,M.Men_Id,Ord_BillAmount,
+MEN_ITEM,MEN_PRICE
+from Customer C RIGHT JOIN Orders O ON C.Cus_ID = O.Cus_Id
+RIGHT JOIN Menu M ON M.Men_ID = O.Men_Id;
+
+drop view vwCustomer;
+
+
+
+
+
