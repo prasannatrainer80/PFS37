@@ -1,0 +1,56 @@
+desc Customer;
+
+desc wallet;
+
+-- Apply INNER Join between Customer and Wallet tables
+
+select C.Cus_ID,Cus_name,Cus_Phn_No,Cus_UserName,Wal_id,Wal_Source,
+Wal_Amount
+from Customer C INNER JOIN Wallet W ON C.Cus_ID = W.Cus_ID;
+
+-- Apply LEFT Join between Customer and Wallet Tables
+
+select C.Cus_ID,Cus_name,Cus_Phn_No,Cus_UserName,Wal_id,Wal_Source,
+Wal_Amount
+from Customer C LEFT JOIN Wallet W ON C.Cus_ID = W.Cus_ID;
+
+-- Apply LEFT Join Between Customer and Orders tables
+
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,Men_Id,Ord_BillAmount
+from Customer C INNER JOIN Orders O ON C.Cus_ID = O.Cus_Id;
+
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,Men_Id,Ord_BillAmount
+from Customer C LEFT JOIN Orders O ON C.Cus_ID = O.Cus_Id;
+
+desc Menu;
+
+Desc Orders;
+
+Desc Customer;
+
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,M.Men_Id,Ord_BillAmount,
+MEN_ITEM,MEN_PRICE
+from Customer C INNER JOIN Orders O ON C.Cus_ID = O.Cus_Id
+INNER JOIN Menu M ON M.Men_ID = O.Men_Id;
+
+-- Apply LEFT join for above query
+
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,M.Men_Id,Ord_BillAmount,
+MEN_ITEM,MEN_PRICE
+from Customer C LEFT JOIN Orders O ON C.Cus_ID = O.Cus_Id
+LEFT JOIN Menu M ON M.Men_ID = O.Men_Id;
+
+-- Apply RIGHT Join for above query
+
+
+select C.Cus_ID,Cus_name,Cus_UserName,Wal_Source,M.Men_Id,Ord_BillAmount,
+MEN_ITEM,MEN_PRICE
+from Customer C RIGHT JOIN Orders O ON C.Cus_ID = O.Cus_Id
+RIGHT JOIN Menu M ON M.Men_ID = O.Men_Id;
+
+
+
+
+
+
+
